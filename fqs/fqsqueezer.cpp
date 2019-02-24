@@ -33,11 +33,11 @@ void usage()
 {
 	cerr << FQS_VERSION << endl;
 	cerr << "Usage for compression:\n";
-	cerr << "  kcsd e [compression-options] <input.fastq>\n";
-	cerr << "  kcsd e [compression-options] <input1.fastq> <input2.fastq>\n";
-	cerr << "  kcsd e [compression-options] @<file_list>\n";
+	cerr << "  fqs-0.1 e [compression-options] <input.fastq>\n";
+	cerr << "  fqs-0.1 e [compression-options] <input1.fastq> <input2.fastq>\n";
+	cerr << "  fqs-0.1 e [compression-options] @<file_list>\n";
 	cerr << "Usage for decompression:\n";
-	cerr << "  kcsd d [decompression-options] <input.fastq>\n";
+	cerr << "  fqs-0.1 d [decompression-options] <input.fastq>\n";
 	cerr << "compression-options:\n";
 	cerr << "  -s          - single-end data\n";
 	cerr << "  -p          - paired-end data\n";
