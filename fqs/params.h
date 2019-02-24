@@ -53,9 +53,9 @@ struct CParams
 	CParams()
 	{
 		work_mode = work_mode_t::compress;
-		tmp_path = "./kcsd_tmp";
-		out_path = "output.kcsd";
-		out_path2 = "output2.kcsd";
+		tmp_path = "./fqs_tmp_";
+		out_path = "output.fqs";
+		out_path2 = "output2.fqs";
 		no_threads = 1;
 		dna_mode = dna_mode_t::se_sorted;
 		quality_mode = quality_mode_t::illumina_8;

@@ -5,3 +5,11 @@
 *.opendb
 *.db
 *.ipch
+*.tlog
+*.obj
+*.log
+*.pdb
+*.idb
+*.exe
+*.ilk
+*.suo

@@ -1605,7 +1605,7 @@ string CApplication::bin_name(uint32_t no) const
 		no /= 4;
 	}
 
-	return params.tmp_path + "kcsd_" + string(s) + ".bin";
+	return params.tmp_path + "fqs_" + string(s) + ".bin";
 }
 
 //*****************************************************************************************************
@@ -1622,7 +1622,7 @@ string CApplication::bin_name(uint32_t no, const uint32_t id_pair) const
 		no /= 4;
 	}
 
-	return params.tmp_path + "kcsd_" + string(s) + "_" + to_string(id_pair) + ".bin";
+	return params.tmp_path + "fqs_" + string(s) + "_" + to_string(id_pair) + ".bin";
 }
 
 //*****************************************************************************************************
