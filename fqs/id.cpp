@@ -742,7 +742,7 @@ uint32_t CIdCompressor::tokenize(const uint8_t *p, const uint32_t size, v_tokens
 	{
 		if (!is_literal(p[i]))
 		{
-			if (token_type == token_type_t::numeric && (i - token_start_pos >= 11) || (i == token_start_pos))
+			if (token_type == token_type_t::numeric && ((i - token_start_pos >= 11) || (i == token_start_pos)))
 				token_type = token_type_t::literal;
 			v_tokens.emplace_back(make_tuple(token_type, p[i], token_start_pos, i));
 

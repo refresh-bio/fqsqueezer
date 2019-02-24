@@ -17,7 +17,7 @@ fqs-0.1: $(FQS_MAIN_DIR)/application.o \
 	$(FQS_MAIN_DIR)/dna.o \
 	$(FQS_MAIN_DIR)/ht_kmer.o \
 	$(FQS_MAIN_DIR)/id.o \
-	$(FQS_MAIN_DIR)/fqs.o \
+	$(FQS_MAIN_DIR)/fqsqueezer.o \
 	$(FQS_MAIN_DIR)/meta.o \
 	$(FQS_MAIN_DIR)/mtf.o \
 	$(FQS_MAIN_DIR)/quality.o \
@@ -29,7 +29,7 @@ fqs-0.1: $(FQS_MAIN_DIR)/application.o \
 	$(FQS_MAIN_DIR)/dna.o \
 	$(FQS_MAIN_DIR)/ht_kmer.o \
 	$(FQS_MAIN_DIR)/id.o \
-	$(FQS_MAIN_DIR)/fqs.o \
+	$(FQS_MAIN_DIR)/fqsqueezer.o \
 	$(FQS_MAIN_DIR)/meta.o \
 	$(FQS_MAIN_DIR)/mtf.o \
 	$(FQS_MAIN_DIR)/quality.o \
