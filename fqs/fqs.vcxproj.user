@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommandArguments>e -tmp tmp/ -t 6 -s -qm 8 -om o -im i -gs 12 -out test t1.fq t2.fq</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>H:\kcsd</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - decomp|x64'">
+    <LocalDebuggerCommandArguments>d -out p1.dec -out2 p2.dec test</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>H:\kcsd</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>e -tmp tmp/ -t 1 -s -qm n -om o -im o -gs 7 -out pa1 pa1.fastq pa2.fastq </LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>H:\kcsd</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - decomp|x64'">
+    <LocalDebuggerCommandArguments>d -out t1.dec -out2 t2.dec test</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>H:\kcsd</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+</Project>
