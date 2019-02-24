@@ -11,7 +11,7 @@ CLINK	= -lm -O3 -std=c++14 -pthread -mavx -fabi-version=6
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-FQS-0.1: $(FQS_MAIN_DIR)/application.o \
+fqs-0.1: $(FQS_MAIN_DIR)/application.o \
 	$(FQS_MAIN_DIR)/code_ctx.o \
 	$(FQS_MAIN_DIR)/compressor.o \
 	$(FQS_MAIN_DIR)/dna.o \
