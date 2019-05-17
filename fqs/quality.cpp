@@ -14,7 +14,7 @@ CQualityCompressor::CQualityCompressor() : CBasicCompressor()
 {
 	tpl_ctx_rc = nullptr;
 
-	for (int i = 0; i < 64; ++i)
+	for (int i = 0; i < 96; ++i)
 	{
 		quality_code_map_fwd[i] = 0;
 		quality_code_map_rev[i] = 0;
@@ -37,7 +37,7 @@ bool CQualityCompressor::Init()
 	switch (params.quality_mode)
 	{
 	case quality_mode_t::lossless:
-		tpl_ctx_rc = new CRangeCoderModel<CVectorIOStream>(rc, 64, 15, 1 << 15, nullptr, 1, params.work_mode == work_mode_t::compress);
+		tpl_ctx_rc = new CRangeCoderModel<CVectorIOStream>(rc, 96, 15, 1 << 15, nullptr, 1, params.work_mode == work_mode_t::compress);
 		adjust_quality_map_lossless();
 		no_bits_per_symbol = 6;
 		no_ctx_symbols = 2;
@@ -73,7 +73,7 @@ bool CQualityCompressor::Init()
 //*****************************************************************************************************
 void CQualityCompressor::adjust_quality_map_lossless()
 {
-	for (int i = 0; i < 64; ++i)
+	for (int i = 0; i < 96; ++i)
 	{
 		quality_code_map_fwd[i] = i;
 		quality_code_map_rev[i] = i;
@@ -111,7 +111,7 @@ void CQualityCompressor::adjust_quality_map_illumina_8()
 		quality_code_map_fwd[i] = 6;
 	quality_code_map_rev[6] = 37;
 
-	for (int i = 40; i < 64; ++i)
+	for (int i = 40; i < 96; ++i)
 		quality_code_map_fwd[i] = 7;
 	quality_code_map_rev[7] = 40;
 }
@@ -131,7 +131,7 @@ void CQualityCompressor::adjust_quality_map_illumina_4()
 		quality_code_map_fwd[i] = 2;
 	quality_code_map_rev[2] = 23;
 
-	for (int i = 31; i < 64; ++i)
+	for (int i = 31; i < 96; ++i)
 		quality_code_map_fwd[i] = 3;
 	quality_code_map_rev[3] = 37;
 }
@@ -143,7 +143,7 @@ void CQualityCompressor::adjust_quality_map_binary()
 		quality_code_map_fwd[i] = 0;
 	quality_code_map_rev[0] = 0;
 
-	for (uint32_t i = params.quality_thr; i < 64u; ++i)
+	for (uint32_t i = params.quality_thr; i < 96u; ++i)
 		quality_code_map_fwd[i] = 1;
 	quality_code_map_rev[1] = params.quality_thr;
 }

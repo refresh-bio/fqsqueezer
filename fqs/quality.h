@@ -19,8 +19,8 @@ using namespace std;
 
 class CQualityCompressor : public CBasicCompressor
 {
-	array<uint32_t, 64> quality_code_map_fwd;
-	array<uint32_t, 64> quality_code_map_rev;
+	array<uint32_t, 96> quality_code_map_fwd;
+	array<uint32_t, 96> quality_code_map_rev;
 
 	uint32_t no_ctx_symbols;
 	uint32_t no_bits_per_symbol;
