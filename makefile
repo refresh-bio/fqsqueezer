@@ -1,4 +1,4 @@
-all: fqs-0.1
+all: fqs-1.1
 
 FQS_ROOT_DIR = .
 FQS_MAIN_DIR = fqs
