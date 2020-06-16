@@ -1,10 +1,10 @@
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "defs.h"
@@ -17,8 +17,6 @@
 
 CInFile infile;
 COutFile outfiles[257];
-char buf[8192];
-int no_reads = 0;
 
 CParams params;
 CApplication *application;
@@ -78,13 +76,13 @@ bool parse_params(int argc, char **argv)
 	if (argc < 3)
 		return false;
 
-	if (string(argv[1]) == "e")
+	if (std::string(argv[1]) == "e")
 		params.work_mode = work_mode_t::compress;
-	else if (string(argv[1]) == "d")
+	else if (std::string(argv[1]) == "d")
 		params.work_mode = work_mode_t::decompress;
 	else
 	{
-		cerr << "Invalid mode: " << string(argv[1]) << endl;
+		cerr << "Invalid mode: " << std::string(argv[1]) << endl;
 		return false;
 	}
 
@@ -92,7 +90,7 @@ bool parse_params(int argc, char **argv)
 
 	for (i = 2; i < argc; ++i)
 	{
-		string par = string(argv[i]);
+		std::string par = std::string(argv[i]);
 
 		if (par[0] != '-')
 			break;
@@ -123,29 +121,29 @@ bool parse_params(int argc, char **argv)
 		}
 		else if (par == "-tmp" && i + 1 < argc)
 		{
-			params.tmp_path = string(argv[i + 1]);
+			params.tmp_path = std::string(argv[i + 1]);
 			++i;
 		}
 		else if (par == "-out" && i + 1 < argc)
 		{
-			params.out_path = string(argv[i + 1]);
+			params.out_path = std::string(argv[i + 1]);
 			++i;
 		}
 		else if (par == "-out2" && i + 1 < argc)
 		{
-			params.out_path2 = string(argv[i + 1]);
+			params.out_path2 = std::string(argv[i + 1]);
 			++i;
 		}
 		else if (par == "-om" && i + 1 < argc)
 		{
-			if (string(argv[i + 1]) == "o")
+			if (std::string(argv[i + 1]) == "o")
 			{
 				if (params.dna_mode == dna_mode_t::pe_sorted)
 					params.dna_mode = dna_mode_t::pe_original;
 				else if (params.dna_mode == dna_mode_t::se_sorted)
 					params.dna_mode = dna_mode_t::se_original;
 			}
-			else if (string(argv[i + 1]) == "s")
+			else if (std::string(argv[i + 1]) == "s")
 			{
 				if (params.dna_mode == dna_mode_t::pe_original)
 					params.dna_mode = dna_mode_t::pe_sorted;
@@ -153,12 +151,12 @@ bool parse_params(int argc, char **argv)
 					params.dna_mode = dna_mode_t::se_sorted;
 			}
 			else
-				cerr << "Unknown order option: " << par << " " << string(argv[i + 1]) << endl;
+				cerr << "Unknown order option: " << par << " " << std::string(argv[i + 1]) << endl;
 			++i;
 		}
 		else if (par == "-qm" && i + 1 < argc)
 		{
-			string par2 = string(argv[i + 1]);
+			std::string par2 = std::string(argv[i + 1]);
 			if (par2 == "o")
 				params.quality_mode = quality_mode_t::lossless;
 			else if (par2 == "8")
@@ -180,7 +178,7 @@ bool parse_params(int argc, char **argv)
 		}
 		else if (par == "-im" && i + 1 < argc)
 		{
-			string par2 = string(argv[i + 1]);
+			std::string par2 = std::string(argv[i + 1]);
 			if (par2 == "o")
 				params.id_mode = id_mode_t::lossless;
 			else if (par2 == "i")
@@ -244,7 +242,7 @@ bool parse_params(int argc, char **argv)
 
 	if (argv[i][0] == '@')
 	{
-		string fn = string(argv[i] + 1);
+		std::string fn = std::string(argv[i] + 1);
 		FILE *f_list = fopen(argv[i] + 1, "rt");
 		if (!f_list)
 		{
@@ -260,7 +258,7 @@ bool parse_params(int argc, char **argv)
 			if (feof(f_list))
 				break;
 
-			params.v_file_names.push_back(trim(string(s)));
+			params.v_file_names.push_back(trim(std::string(s)));
 		}
 		fclose(f_list);
 
@@ -271,11 +269,11 @@ bool parse_params(int argc, char **argv)
 		}
 	}
 	else if (params.dna_mode == dna_mode_t::se_original || params.dna_mode == dna_mode_t::se_sorted)
-		params.v_file_names.push_back(string(argv[i]));
+		params.v_file_names.push_back(std::string(argv[i]));
 	else if (i + 1 < argc)
 	{
-		params.v_file_names.push_back(string(argv[i]));
-		params.v_file_names.push_back(string(argv[i + 1]));
+		params.v_file_names.push_back(std::string(argv[i]));
+		params.v_file_names.push_back(std::string(argv[i + 1]));
 	}
 	else
 	{

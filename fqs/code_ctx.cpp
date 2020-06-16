@@ -1,10 +1,10 @@
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "code_ctx.h"
@@ -384,9 +384,9 @@ context_t CCodeContext::transform_r_sym(context_t r_sym) const
 }
 
 //*****************************************************************************************************
-string CCodeContext::decode_ctx(context_t ctx, int &lev)
+std::string CCodeContext::decode_ctx(context_t ctx, int &lev)
 {
-	string s = "[";
+	std::string s = "[";
 	context_t t;
 
 	t = (ctx >> shift_counts_level) & mask_counts_level;
@@ -431,25 +431,25 @@ string CCodeContext::decode_ctx(context_t ctx, int &lev)
 
 	t = (ctx >> shift_counts[0]) & mask_counts;
 	if (t != mask_counts)
-		s += string("  C0:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
+		s += std::string("  C0:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
 	else
 		s += "  C0:---";
 
 	t = (ctx >> shift_counts[1]) & mask_counts;
 	if (t != mask_counts)
-		s += string("  C1:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
+		s += std::string("  C1:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
 	else
 		s += "  C1:---";
 
 	t = (ctx >> shift_counts[2]) & mask_counts;
 	if (t != mask_counts)
-		s += string("  C2:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
+		s += std::string("  C2:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
 	else
 		s += "  C2:---";
 
 	t = (ctx >> shift_counts[3]) & mask_counts;
 	if (t != mask_counts)
-		s += string("  C3:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
+		s += std::string("  C3:") + ("0123"[t >> 5]) + ":" + to_string(t & 31);
 	else
 		s += "  C3:---";
 
@@ -490,9 +490,9 @@ context_t CLettersContext::decode_letter(uint64_t letters, uint32_t idx) const
 }
 
 //*****************************************************************************************************
-string CLettersContext::decode_ctx(context_t ctx)
+std::string CLettersContext::decode_ctx(context_t ctx)
 {
-	string s = "[";
+	std::string s = "[";
 	context_t t;
 
 	t = (ctx >> shift_pos) & mask_pos;

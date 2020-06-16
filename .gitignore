@@ -13,3 +13,10 @@
 *.exe
 *.ilk
 *.suo
+*.db-shm
+*.db-wal
+*.txt
+*.iobj
+*.ipdb
+*.fqs
+*.fastq

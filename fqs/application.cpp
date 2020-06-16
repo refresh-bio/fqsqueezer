@@ -1,10 +1,10 @@
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "application.h"
@@ -506,7 +506,7 @@ bool CApplication::preprocess_pe()
 }
 
 //*****************************************************************************************************
-bool CApplication::compress_se_files(const vector<string> &v_file_names, bool original_order)
+bool CApplication::compress_se_files(const vector<std::string> &v_file_names, bool original_order)
 {
 	reads_block_cur  = new CReadsBlock<CBasicFASTQFile, COutFile>(READS_BLOCK_SIZE, work_mode_t::compress);
 	reads_block_next = new CReadsBlock<CBasicFASTQFile, COutFile>(READS_BLOCK_SIZE, work_mode_t::compress);
@@ -784,7 +784,7 @@ bool CApplication::compress_se_files(const vector<string> &v_file_names, bool or
 }
 
 //*****************************************************************************************************
-bool CApplication::decompress_se_file(const string &file_name)
+bool CApplication::decompress_se_file(const std::string &file_name)
 {
 	COutFile f_fastq;
 	bool r = true;
@@ -1017,7 +1017,7 @@ bool CApplication::decompress_se_file(const string &file_name)
 }
 
 //*****************************************************************************************************
-bool CApplication::compress_pe_files(const vector<string> &v_file_names, bool original_order)
+bool CApplication::compress_pe_files(const vector<std::string> &v_file_names, bool original_order)
 {
 	reads_block_cur = new CReadsBlock<CBasicFASTQFile, COutFile>(READS_BLOCK_SIZE, work_mode_t::compress);
 	reads_block_next = new CReadsBlock<CBasicFASTQFile, COutFile>(READS_BLOCK_SIZE, work_mode_t::compress);
@@ -1331,7 +1331,7 @@ bool CApplication::compress_pe_files(const vector<string> &v_file_names, bool or
 }
 
 //*****************************************************************************************************
-bool CApplication::decompress_pe_file(const string &file_name1, const string &file_name2)
+bool CApplication::decompress_pe_file(const std::string &file_name1, const std::string &file_name2)
 {
 	COutFile f_fastqs[2];
 	bool r = true;
@@ -1592,7 +1592,7 @@ bool CApplication::decompress_pe_file(const string &file_name1, const string &fi
 }
 
 //*****************************************************************************************************
-string CApplication::bin_name(uint32_t no) const
+std::string CApplication::bin_name(uint32_t no) const
 {
 	char s[10];
 
@@ -1605,11 +1605,11 @@ string CApplication::bin_name(uint32_t no) const
 		no /= 4;
 	}
 
-	return params.tmp_path + "fqs_" + string(s) + ".bin";
+	return params.tmp_path + "fqs_" + std::string(s) + ".bin";
 }
 
 //*****************************************************************************************************
-string CApplication::bin_name(uint32_t no, const uint32_t id_pair) const
+std::string CApplication::bin_name(uint32_t no, const uint32_t id_pair) const
 {
 	char s[10];
 
@@ -1622,11 +1622,11 @@ string CApplication::bin_name(uint32_t no, const uint32_t id_pair) const
 		no /= 4;
 	}
 
-	return params.tmp_path + "fqs_" + string(s) + "_" + to_string(id_pair) + ".bin";
+	return params.tmp_path + "fqs_" + std::string(s) + "_" + to_string(id_pair) + ".bin";
 }
 
 //*****************************************************************************************************
-void CApplication::log_thread_jobs(const string &str) const
+void CApplication::log_thread_jobs(const std::string &str) const
 {
 #ifndef LOG_WORKER_JOBS
 	return;

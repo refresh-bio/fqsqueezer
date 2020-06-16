@@ -1,11 +1,11 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include <random>
@@ -254,7 +254,7 @@ class CDNACompressor : public CBasicCompressor
 	void update_s_letters(const uint8_t *p, uint32_t size);
 
 	void show_contexts();
-	string decode_ctx_let(context_t ctx);
+	std::string decode_ctx_let(context_t ctx);
 
 public:
 	CDNACompressor();

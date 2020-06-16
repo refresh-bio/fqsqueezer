@@ -1,11 +1,11 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "defs.h"
@@ -22,7 +22,7 @@ public:
 	work_mode_t work_mode;
 	uint64_t filled_size;
 
-	const uint64_t block_size_margin = 10240;
+	const uint64_t block_size_margin = 102400;
 
 	uint8_t *input_FASTQ;
 	uint8_t *output_FASTQ;

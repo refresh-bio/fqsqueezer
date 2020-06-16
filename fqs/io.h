@@ -1,15 +1,16 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include <algorithm>
 #include <vector>
+#include <string>
 #include <cstdint>
 #include <cstring>
 
@@ -51,7 +52,7 @@ public:
 			delete[] buffer;
 	}
 
-	bool Open(string file_name, uint32_t verbosity)
+	bool Open(std::string file_name, uint32_t verbosity)
 	{
 		if (f)
 			return false;
@@ -71,7 +72,7 @@ public:
 
 		if (verbosity == 2)
 		{
-			cout << string("Opening file of size: ") + to_string(file_size) + "\n";
+			cout << std::string("Opening file of size: ") + to_string(file_size) + "\n";
 			fflush(stdout);
 		}
 
@@ -218,7 +219,7 @@ public:
 			delete[] buffer;
 	}
 
-	bool Open(const string &file_name)
+	bool Open(const std::string &file_name)
 	{
 		if (f)
 			return false;
@@ -320,12 +321,12 @@ public:
 			cerr << "To large value\n";
 	}
 
-	void Write(const string &s)
+	void Write(const std::string &s)
 	{
 		Write((uint8_t*)s.c_str(), s.size());
 	}
 
-	void Write(const string &s, const size_t start_pos, const size_t len)
+	void Write(const std::string &s, const size_t start_pos, const size_t len)
 	{
 		Write((uint8_t*)s.c_str() + start_pos, len);
 	}
@@ -376,7 +377,7 @@ public:
 	{};
 
 	virtual ~CBasicFASTQFile() {}
-	virtual bool Open(const string &file_name, uint32_t verbosity) = 0;
+	virtual bool Open(const std::string &file_name, uint32_t verbosity) = 0;
 	virtual bool Close() = 0;
 	virtual int Get() = 0;
 	virtual bool Eof() = 0;
@@ -396,7 +397,7 @@ public:
 	virtual ~CPlainFASTQFile()
 	{}
 
-	virtual bool Open(const string &file_name, uint32_t verbosity)
+	virtual bool Open(const std::string &file_name, uint32_t verbosity)
 	{
 		return in_file.Open(file_name, verbosity);
 	}
@@ -434,6 +435,7 @@ class CSortedFASTQFile : public CBasicFASTQFile
 	char dna_convert_NT[256];
 
 	FILE *f;
+	std::string fn;
 	CSortedFASTQFile *f_sorting_order;
 	uint8_t *buffer;
 	size_t buffer_pos;
@@ -567,12 +569,15 @@ public:
 	virtual ~CSortedFASTQFile()
 	{
 		if (f)
+		{
 			fclose(f);
+			remove(fn.c_str());
+		}
 		if (buffer)
 			delete[] buffer;
 	}
 
-	virtual bool Open(const string &file_name, uint32_t verbosity)
+	virtual bool Open(const std::string &file_name, uint32_t verbosity)
 	{
 		if (f)
 			return false;
@@ -580,6 +585,8 @@ public:
 		f = fopen(file_name.c_str(), "rb");
 		if (!f)
 			return false;
+
+		fn = file_name;
 
 		my_fseek(f, 0, SEEK_END);
 		file_size = my_ftell(f);
@@ -591,7 +598,7 @@ public:
 
 		if (verbosity == 2)
 		{
-			cout << string("Opening file of size: ") + to_string(file_size) + "\n";
+			cout << std::string("Opening file of size: ") + to_string(file_size) + "\n";
 			fflush(stdout);
 		}
 
@@ -606,7 +613,11 @@ public:
 		n_reads = v_reads.size();
 		i_read = 0;
 		cur_read_pos = 0;
-		cur_read_size = v_reads[i_read].first.read_size();
+		
+		if (v_reads.empty())
+			cur_read_size = 0;
+		else
+			cur_read_size = v_reads[i_read].first.read_size();
 
 		return true;
 	}
@@ -616,6 +627,7 @@ public:
 		if (f)
 		{
 			fclose(f);
+			remove(fn.c_str());
 			f = nullptr;
 		}
 		if (buffer)

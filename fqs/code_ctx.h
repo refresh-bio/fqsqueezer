@@ -1,11 +1,11 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "defs.h"
@@ -91,7 +91,7 @@ public:
 
 	void determine_ctx_codes(context_levels_t &a_code_ctx, const stats_t &counts, const stats64_t &s_letters,
 		uint32_t pos, counts_level_t counts_level, uint32_t corrected_zone, context_t ctx_r_sym, uint32_t read_len);
-	string decode_ctx(context_t ctx, int &lev);
+	std::string decode_ctx(context_t ctx, int &lev);
 };
 
 class CLettersContext
@@ -148,7 +148,7 @@ public:
 
 	void determine_ctx_letters(context_levels_t &a_letter_ctx, uint32_t pos, uint64_t letters, uint32_t read_len);
 
-	string decode_ctx(context_t ctx);
+	std::string decode_ctx(context_t ctx);
 };
 
 // EOF

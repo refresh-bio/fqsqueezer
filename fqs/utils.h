@@ -1,11 +1,11 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "defs.h"
@@ -135,9 +135,9 @@ class CProgress
 
 	int64_t max_value;
 	int64_t current_value;
-	string comment;
+	std::string comment;
 
-	string prev_text;
+	std::string prev_text;
 
 	void show_progress(void);
 
@@ -146,7 +146,7 @@ public:
 	~CProgress();
 
 	void Init(int64_t _max_value, bool _show_comment);
-	void SetComment(string _comment);
+	void SetComment(std::string _comment);
 
 	void Step(int64_t increment);
 };
@@ -176,7 +176,7 @@ constexpr uint64_t no_bytes(uint64_t x)
 uint64_t popcnt(uint64_t x);
 uint64_t notz(uint64_t x);
 
-string trim(string s);
+std::string trim(std::string s);
 
 void sort_copy_stats(stats_t &dest, const stats_t &src);
 

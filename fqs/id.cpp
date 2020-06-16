@@ -1,10 +1,10 @@
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include "id.h"
@@ -420,7 +420,7 @@ void CIdCompressor::compress_instrument(uint8_t *p, uint32_t size)
 	uint32_t instr_name_size = extract_instrument(p, size);
 	p[instr_name_size] = 0;
 
-	string instr_name((char *)p);
+	std::string instr_name((char *)p);
 
 	int mtf_code = mtf.GetCode(instr_name);
 
@@ -670,12 +670,12 @@ void CIdCompressor::decompress_instrument(uint8_t *p, uint32_t &size)
 {
 	uint32_t flag = rc_id_mtf_flag->Decode();
 	int mtf_code = 0;
-	string instr_name;
+	std::string instr_name;
 
 	if (flag == 0)			// new instrument name
 	{
 		decompress_lossless(p, size);
-		instr_name = string((char*) p);
+		instr_name = std::string((char*) p);
 		p[size-1] = '\n';
 
 		mtf.Insert(instr_name);

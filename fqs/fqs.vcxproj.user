@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>e -tmp tmp/ -t 6 -s -qm 8 -om o -im i -gs 12 -out test t1.fq t2.fq</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>e -t 12 -s -qm o -om o -im o -gs 100 -out test j:\3gen\_fastq\Zymo200k.fq</LocalDebuggerCommandArguments>
     <LocalDebuggerWorkingDirectory>H:\kcsd</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
@@ -11,8 +11,8 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>e -tmp tmp/ -t 1 -s -qm n -om o -im o -gs 7 -out pa1 pa1.fastq pa2.fastq </LocalDebuggerCommandArguments>
-    <LocalDebuggerWorkingDirectory>H:\kcsd</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>e -tmp tmp/ -t 1 -s -gs 10 -out pa1 test1.fastq</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>j:\tmp</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - decomp|x64'">

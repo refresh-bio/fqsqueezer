@@ -1,15 +1,15 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include <array>
-
+#include <string>
 using namespace std;
 
 typedef array<uint32_t, 4> stats_t;
@@ -37,7 +37,7 @@ const size_t STREAM_ID      = 1;
 const size_t STREAM_DNA     = 2;
 const size_t STREAM_QUALITY = 3;
 
-const string FQS_VERSION = "FQSqueezer (k-mer-based compression of sequencing data) 0.1";
+const std::string FQS_VERSION = std::string("FQSqueezer (k-mer-based compression of sequencing data) 1.1");
 
 const unsigned char dna_alphabet[] = "ACGTN";
 

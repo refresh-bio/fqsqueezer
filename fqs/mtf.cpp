@@ -1,10 +1,10 @@
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include <iostream>
@@ -27,7 +27,7 @@ CMTF::~CMTF()
 
 // *******************************************************************************************
 // Return current value for a symbol
-int CMTF::find_pos(const string x) const
+int CMTF::find_pos(const std::string x) const
 {
 	auto p = v_sym_pos.find(x);
 
@@ -48,7 +48,7 @@ void CMTF::Reset()
 
 // *******************************************************************************************
 // Update MTF list
-void CMTF::Insert(const string x) 
+void CMTF::Insert(const std::string x)
 {
 	int p = find_pos(x);
 
@@ -112,21 +112,21 @@ inline void CMTF::move_up(const int x)
 
 // *******************************************************************************************
 // Return position of symbol in the list
-int CMTF::GetCode(const string x) const
+int CMTF::GetCode(const std::string x) const
 {
 	return find_pos(x);
 }
 
 // *******************************************************************************************
 // Gest symbol from the given position
-string CMTF::GetString(const int x) const
+std::string CMTF::GetString(const int x) const
 {
 	return v[x];
 }
 
 // *******************************************************************************************
 // Check whether a symbol is valid
-inline bool CMTF::IsPresent(const string x) const
+inline bool CMTF::IsPresent(const std::string x) const
 {
 	return find_pos(x) >= 0;
 }

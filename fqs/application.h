@@ -1,11 +1,11 @@
 #pragma once
 // *******************************************************************************************
 // This file is a part of FQSqueezer software distributed under GNU GPL 3 licence.
-// The homepage of the MSAC project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
+// The homepage of the FQSqueezer project is http://sun.aei.polsl.pl/REFRESH/fqsqueezer
 //
 // Author: Sebastian Deorowicz
-// Version: 1.0
-// Date   : 2019-02-22
+// Version: 1.1
+// Date   : 2020-06-16
 // *******************************************************************************************
 
 #include <string>
@@ -72,11 +72,11 @@ class CApplication
 	bool decompress_se();
 	bool decompress_pe();
 
-	bool compress_se_files(const vector<string> &v_file_names, bool original_order);
-	bool decompress_se_file(const string &file_name);
+	bool compress_se_files(const vector<std::string> &v_file_names, bool original_order);
+	bool decompress_se_file(const std::string &file_name);
 
-	bool compress_pe_files(const vector<string> &v_file_names, bool original_order);
-	bool decompress_pe_file(const string &file_name1, const string &file_name2);
+	bool compress_pe_files(const vector<std::string> &v_file_names, bool original_order);
+	bool decompress_pe_file(const std::string &file_name1, const std::string &file_name2);
 
 	bool preprocess_se();
 	bool preprocess_pe();
@@ -91,12 +91,12 @@ class CApplication
 		return r;
 	}
 
-	string bin_name(uint32_t no) const;
-	string bin_name(uint32_t no, const uint32_t id_pair) const;
+	std::string bin_name(uint32_t no) const;
+	std::string bin_name(uint32_t no, const uint32_t id_pair) const;
 
 	void AdjustToParams();
 
-	void log_thread_jobs(const string &str) const;
+	void log_thread_jobs(const std::string &str) const;
 	
 public:
 	CApplication();
